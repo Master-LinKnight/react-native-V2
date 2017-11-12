@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",
-    "react-native-splash-screen": "^2.1.0"
+    "react-native-splash-screen": "^2.1.0",
+    "react-navigation": "^1.0.0-beta.19"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",
