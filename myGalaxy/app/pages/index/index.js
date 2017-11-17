@@ -16,6 +16,7 @@ import {
 import { StackNavigator,TabNavigator,DrawerNavigator } from 'react-navigation';
 import Topic from '../topic/topic'
 import Movie from '../movie/movie'
+import TabBarItem from './tabBarItem'
 
 export default class Index extends Component {
     constructor(props){
@@ -47,13 +48,19 @@ export default class Index extends Component {
                 Topic: {
                     screen: Topic,
                     navigationOptions: {
-                        tabBarLabel: '话题广场'
+                        tabBarLabel: '话题广场',
+                        tabBarIcon: ({focused}) => (
+                            <TabBarItem focused={focused} style={styles.tabBarIcon} normalImage={require('../../images/topic.png')} selectedImage={require('../../images/topic-active.png')}/>
+                        )
                     }
                 },
                 Movie: {
                     screen: Movie,
                     navigationOptions: {
-                        tabBarLabel: '电影院线'
+                        tabBarLabel: '电影院线',
+                        tabBarIcon: ({focused}) => (
+                            <TabBarItem focused={focused} style={styles.tabBarIcon} normalImage={require('../../images/movie.png')} selectedImage={require('../../images/movie-active.png')}/>
+                        )
                     }
                 }
             },
@@ -99,6 +106,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#efefef'
+    },
+    tabBarIcon: {
+        height: 45,
+        width: 45,
+        marginBottom: 30
     }
 });
 
