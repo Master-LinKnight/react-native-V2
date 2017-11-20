@@ -16,7 +16,9 @@ import {
 import { StackNavigator,TabNavigator,DrawerNavigator } from 'react-navigation';
 import Topic from '../topic/topic'
 import Movie from '../movie/movie'
+import About from '../about/about'
 import TabBarItem from './tabBarItem'
+// import Drawer from 'react-native-drawer'
 
 export default class Index extends Component {
     constructor(props){
@@ -62,6 +64,15 @@ export default class Index extends Component {
                             <TabBarItem focused={focused} style={styles.tabBarIcon} normalImage={require('../../images/movie.png')} selectedImage={require('../../images/movie-active.png')}/>
                         )
                     }
+                },
+                About: {
+                    screen: About,
+                    navigationOptions: {
+                        tabBarLabel: '关于App',
+                        tabBarIcon: ({focused}) => (
+                            <TabBarItem focused={focused} style={[styles.tabBarIcon,{marginBottom: 24}]} normalImage={require('../../images/about.png')} selectedImage={require('../../images/about-active.png')}/>
+                        )
+                    }
                 }
             },
             {
@@ -94,10 +105,29 @@ export default class Index extends Component {
                 },
                 backBehavior: 'none',
             });
+        const DrawerScreen = () => {
+            return <View />
+        }
+        const drawerStyles = {
+            drawer: { shadowColor: '#0000ff', shadowOpacity: 0.8, shadowRadius: 3},
+            main: {paddingLeft: 0},
+        }
 
         return (
             <View style={styles.container}>
                 <TabScreen/>
+                {/* <Drawer
+                    type='displace'
+                    content={<DrawerScreen />}
+                    tapToClose={true}
+                    panOpenMask={0.3}
+                    openDrawerOffset={0.3} // 20% gap on the right side of drawer
+                    panCloseMask={0.3}
+                    closedDrawerOffset={0}
+                    styles={drawerStyles}
+                    tweenHandler={(ratio) => ({main: { opacity:(2-ratio)/2 }})}>
+                    <TabScreen/>
+                </Drawer> */}
             </View>
         );
     }
