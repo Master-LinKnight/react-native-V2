@@ -46,8 +46,7 @@ export default class TopicItem extends React.Component {
         // const {dispatch} = this.props
         // console.log(dispatch(routerPage('Detail',rowData,false)))
         const {navigation} = this.props
-
-        navigation.navigate('app/:detail')
+        navigation.navigate('Detail', {data: rowData})
     }
 
     render() {

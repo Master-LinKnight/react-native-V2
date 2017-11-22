@@ -20,6 +20,26 @@ export default class Movie extends Component {
 
     }
 
+    static navigationOptions = ({navigation}) => {
+        return ({
+            title:'电影院线',
+            headerTitleStyle: {
+                color: '#ffffff',
+                fontSize: 36,
+                textAlign: 'center',
+                marginTop: 16,
+            },
+            headerStyle: {
+                backgroundColor: '#3b5597',
+                height: 132
+            },
+            headerTintColor: '#ffffff',
+            headerBackTitle: null,
+            headerLeft: null,
+            gesturesEnabled: false
+        })
+    }
+
     render() {
         // Navigation = this.props.navigation;
 

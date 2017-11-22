@@ -15,14 +15,20 @@ import {
     TouchableWithoutFeedback,
     WebView
 } from 'react-native';
+import Loading from '../../common/loading'
 
 export default class Detail extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            isfreshing: true
+        }
     }
     static navigationOptions = ({navigation}) => {
+        let detailData = navigation.state.params.data
+
         return ({
-            title:'Playground',
+            title: detailData.desc,
             headerTitleStyle: {
                 color: '#ffffff',
                 fontSize: 36,
@@ -40,12 +46,48 @@ export default class Detail extends Component {
         })
     }
 
+    componentWillMount()
+    {
+
+    }
+
+    loadComplete = () => {
+        this.setState({
+            isfreshing: false
+        })
+    }
+
+    onRenderLoading = () => {
+        console.log('loading')
+    }
+
+    loadStart = () => {
+        setTimeout(()=>{
+            this.setState({
+                isfreshing: false
+            })
+        },10000)
+    }
+
     render() {
         // Navigation = this.props.navigation;
+        const {navigation} = this.props
+        let detailData = navigation.state.params.data
 
         return (
             <View style={styles.container}>
-
+                <Loading size={'large'} visible={this.state.isfreshing}/>
+                <WebView
+                    // ref='webview'
+                    style={styles.web}
+                    source={{uri: detailData.url}}
+                    // onNavigationStateChange  = {(navState) => this._onNavigationStateChange (navState)}
+                    automaticallyAdjustContentInsets={true}
+                    scalesPageToFit={true}
+                    onLoadEnd={this.loadComplete}
+                    onLoadStart={this.loadStart}
+                    renderLoading={this.onRenderLoading}
+                />
             </View>
         );
     }
@@ -53,9 +95,16 @@ export default class Detail extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         backgroundColor: '#efefef'
+    },
+    web: {
+        position: 'absolute',
+        top:0,
+        bottom:0,
+        left:0,
+        right:0,
     }
 });
 

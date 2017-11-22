@@ -21,6 +21,34 @@ export default class About extends Component {
 
     }
 
+    static navigationOptions = ({navigation}) => {
+        return ({
+            title:'关于App',
+            headerTitleStyle: {
+                color: '#ffffff',
+                fontSize: 36,
+                textAlign: 'center',
+                marginTop: 16,
+            },
+            headerStyle: {
+                backgroundColor: '#3b5597',
+                height: 132
+            },
+            headerTintColor: '#ffffff',
+            headerBackTitle: null,
+            headerLeft: null,
+            gesturesEnabled: false
+        })
+    }
+
+    onItemClick = () => {
+        const {navigation} = this.props
+        navigation.navigate('Detail', {data: {
+            desc: 'myGalaxy源码地址',
+            url: 'https://github.com/MK-LinKnight/react-native-V2'
+        }})
+    }
+
     render() {
         // Navigation = this.props.navigation;
 
@@ -32,9 +60,13 @@ export default class About extends Component {
                 <Text style={styles.instructions}>
                     感兴趣的同学{'\n'}可以访问GitHub地址获取源码
                 </Text>
-                <Text style={styles.instructions}>
-                    https://github.com/MK-LinKnight/react-native-V2
-                </Text>
+                <TouchableWithoutFeedback onPress={this.onItemClick}>
+                    <View>
+                        <Text style={[styles.instructions, {textDecorationLine: 'underline'}]}>
+                            https://github.com/MK-LinKnight/react-native-V2
+                        </Text>
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
         );
     }

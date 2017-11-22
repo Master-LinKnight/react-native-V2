@@ -26,6 +26,26 @@ class Topic extends Component {
 
     }
 
+    static navigationOptions = ({navigation}) => {
+        return ({
+            title:'话题广场',
+            headerTitleStyle: {
+                color: '#ffffff',
+                fontSize: 36,
+                textAlign: 'center',
+                marginTop: 16,
+            },
+            headerStyle: {
+                backgroundColor: '#3b5597',
+                height: 132
+            },
+            headerTintColor: '#ffffff',
+            headerBackTitle: null,
+            headerLeft: null,
+            gesturesEnabled: false
+        })
+    }
+
     componentDidMount()
     {
 
@@ -47,7 +67,7 @@ class Topic extends Component {
         return (
             <View style={styles.container}>
                 <ScrollableTabView
-                    style={{}}
+                    style={{flex: 1}}
                     tabBarPosition='top'
                     initialPage={0}
                     locked={true}

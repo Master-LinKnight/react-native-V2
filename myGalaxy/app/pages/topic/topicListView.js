@@ -82,19 +82,24 @@ export default class TopicListView extends React.Component {
             return;
         }
 
-        if (Platform.OS === 'ios') {
-            return (
-                <View style={styles.progress}>
-                    <ActivityIndicator size={'large'}/>
-                </View>
-            );
-        }else {
-            return (
-                <View style={styles.progress}>
-                    <ProgressBarAndroid />
-                </View>
-            );
-        }
+        return (
+            <View style={styles.progress}>
+                <ActivityIndicator size={'large'}/>
+            </View>
+        );
+        // if (Platform.OS === 'ios') {
+        //     return (
+        //         <View style={styles.progress}>
+        //             <ActivityIndicator size={'large'}/>
+        //         </View>
+        //     );
+        // }else {
+        //     return (
+        //         <View style={styles.progress}>
+        //             <ProgressBarAndroid />
+        //         </View>
+        //     );
+        // }
     }
 
     render() {
