@@ -9,17 +9,16 @@ const defaultState = {
     rankList: []
 }
 const initialState = []
-initialState["瞎推荐"] = defaultState
-initialState["App"] = defaultState
-initialState["Android"] = defaultState
-initialState["iOS"] = defaultState
-initialState["休息视频"] = defaultState
-initialState["福利"] = defaultState
-initialState["拓展资源"] = defaultState
-initialState["前端"] = defaultState
+initialState["瞎推荐"] = Object.assign({}, defaultState)
+initialState["App"] = Object.assign({}, defaultState)
+initialState["Android"] = Object.assign({}, defaultState)
+initialState["iOS"] = Object.assign({}, defaultState)
+initialState["休息视频"] = Object.assign({}, defaultState)
+initialState["福利"] = Object.assign({}, defaultState)
+initialState["拓展资源"] = Object.assign({}, defaultState)
+initialState["前端"] = Object.assign({}, defaultState)
 
 export default function topic(state = initialState, action) {
-    // console.log(action)
     switch (action.type) {
         case types.FETCH_ARTICLE_LIST:
             state[action.category].isRefreshing = action.isRefreshing
