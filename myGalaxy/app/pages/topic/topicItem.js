@@ -10,8 +10,15 @@ import {
     ListView,
     RefreshControl
 } from 'react-native';
+import {routerPage} from '../../actions/router'
 
 export default class TopicItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
+
     onTextLayout(event){
         let descHeight = event.nativeEvent.layout.height;
         let totalHeight = descHeight + 85 > 110 ? descHeight + 90 : 110
@@ -35,16 +42,26 @@ export default class TopicItem extends React.Component {
         return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
     }
 
+    onItemClick = (rowData) => {
+        // const {dispatch} = this.props
+        // console.log(dispatch(routerPage('Detail',rowData,false)))
+        const {navigation} = this.props
+
+        navigation.navigate('app/:detail')
+    }
+
     render() {
         const {rowData} = this.props;
         return(
-            <View ref="item" style={styles.listItem}>
-                <Text style={styles.listItemTitle} onLayout={this.onTextLayout.bind(this)}>{rowData.desc}</Text>
-                <View style={styles.listItemBox}>
-                    <Text style={styles.listItemBoxText}>{'作者：' + rowData.who}</Text>
-                    <Text style={styles.listItemBoxText}>{this.formatDate(rowData.publishedAt)}</Text>
+            <TouchableWithoutFeedback onPress={this.onItemClick.bind(this, rowData)}>
+                <View ref="item" style={styles.listItem}>
+                    <Text style={styles.listItemTitle} onLayout={this.onTextLayout.bind(this)}>{rowData.desc}</Text>
+                    <View style={styles.listItemBox}>
+                        <Text style={styles.listItemBoxText}>{'作者：' + rowData.who}</Text>
+                        <Text style={styles.listItemBoxText}>{this.formatDate(rowData.publishedAt)}</Text>
+                    </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

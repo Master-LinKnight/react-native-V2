@@ -11,7 +11,7 @@ export default class TopicService {
         try {
             // 注意这里的await语句，其所在的函数必须有async关键字声明
             const url = `http://gank.io/api/data/${params.category}/${params.count}/${params.pages}`
-            console.log(url)
+            // console.log(url)
             let response = await fetch(url);
             let responseJson = await response.json();
             return responseJson;

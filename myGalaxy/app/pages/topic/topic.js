@@ -15,11 +15,12 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import ScrollableTabView, {DefaultTabBar,ScrollableTabBar } from 'react-native-scrollable-tab-view';
+import {connect} from 'react-redux';
 import TopicService from '../../services/topicService'
 import TopicListView from './topicListView'
 
 var tabModel = ['瞎推荐','App','Android','iOS','休息视频','福利','拓展资源','前端']  //Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
-export default class Topic extends Component {
+class Topic extends Component {
     constructor(props){
         super(props);
 
@@ -56,14 +57,14 @@ export default class Topic extends Component {
                     tabBarInactiveTextColor={'#8a8a8a'}
                     tabBarActiveTextColor={'#3b5597'}
                 >
-                    <TopicListView key={0} tabLabel={tabModel[0]} style={styles.base} category={tabModel[0]}/>
-                    <TopicListView key={1} tabLabel={tabModel[1]} style={styles.base} category={tabModel[1]}/>
-                    <TopicListView key={2} tabLabel={tabModel[2]} style={styles.base} category={tabModel[2]}/>
-                    <TopicListView key={3} tabLabel={tabModel[3]} style={styles.base} category={tabModel[3]}/>
-                    <TopicListView key={4} tabLabel={tabModel[4]} style={styles.base} category={tabModel[4]}/>
-                    <TopicListView key={5} tabLabel={tabModel[5]} style={styles.base} category={tabModel[5]}/>
-                    <TopicListView key={6} tabLabel={tabModel[6]} style={styles.base} category={tabModel[6]}/>
-                    <TopicListView key={7} tabLabel={tabModel[7]} style={styles.base} category={tabModel[7]}/>
+                    <TopicListView key={0} tabLabel={tabModel[0]} style={styles.base} category={tabModel[0]} {...this.props}/>
+                    <TopicListView key={1} tabLabel={tabModel[1]} style={styles.base} category={tabModel[1]} {...this.props}/>
+                    <TopicListView key={2} tabLabel={tabModel[2]} style={styles.base} category={tabModel[2]} {...this.props}/>
+                    <TopicListView key={3} tabLabel={tabModel[3]} style={styles.base} category={tabModel[3]} {...this.props}/>
+                    <TopicListView key={4} tabLabel={tabModel[4]} style={styles.base} category={tabModel[4]} {...this.props}/>
+                    <TopicListView key={5} tabLabel={tabModel[5]} style={styles.base} category={tabModel[5]} {...this.props}/>
+                    <TopicListView key={6} tabLabel={tabModel[6]} style={styles.base} category={tabModel[6]} {...this.props}/>
+                    <TopicListView key={7} tabLabel={tabModel[7]} style={styles.base} category={tabModel[7]} {...this.props}/>
                 </ScrollableTabView>
             </View>
         );
@@ -99,6 +100,14 @@ const styles = StyleSheet.create({
         textAlign:'center',
     },
 });
+
+function mapStateToProps(state) {
+    const { topic } = state
+    return {
+        topic
+    }
+}
+export default connect(mapStateToProps)(Topic)
 
 
 
