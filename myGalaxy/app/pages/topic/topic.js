@@ -18,6 +18,7 @@ import ScrollableTabView, {DefaultTabBar,ScrollableTabBar } from 'react-native-s
 import {connect} from 'react-redux';
 import TopicService from '../../services/topicService'
 import TopicListView from './topicListView'
+import BeautyScrollView from './beautyScrollView'
 
 var tabModel = ['瞎推荐','App','Android','iOS','休息视频','福利','拓展资源','前端']  //Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
 class Topic extends Component {
@@ -82,7 +83,7 @@ class Topic extends Component {
                     <TopicListView key={2} tabLabel={tabModel[2]} style={styles.base} category={tabModel[2]} {...this.props}/>
                     <TopicListView key={3} tabLabel={tabModel[3]} style={styles.base} category={tabModel[3]} {...this.props}/>
                     <TopicListView key={4} tabLabel={tabModel[4]} style={styles.base} category={tabModel[4]} {...this.props}/>
-                    <TopicListView key={5} tabLabel={tabModel[5]} style={styles.base} category={tabModel[5]} {...this.props}/>
+                    <BeautyScrollView key={5} tabLabel={tabModel[5]} style={styles.base} category={tabModel[5]} {...this.props}/>
                     <TopicListView key={6} tabLabel={tabModel[6]} style={styles.base} category={tabModel[6]} {...this.props}/>
                     <TopicListView key={7} tabLabel={tabModel[7]} style={styles.base} category={tabModel[7]} {...this.props}/>
                 </ScrollableTabView>
