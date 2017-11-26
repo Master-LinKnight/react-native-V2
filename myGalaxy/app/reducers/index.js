@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import topic from './topic'
-import router from './router'
+import image from './image'
 
 const rootReducer = combineReducers({
     topic,
-    router
+    image
 })
 
 export default rootReducer;

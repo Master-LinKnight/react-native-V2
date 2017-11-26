@@ -47,11 +47,6 @@ class Topic extends Component {
         })
     }
 
-    componentDidMount()
-    {
-
-    }
-
     render() {
         // Navigation = this.props.navigation;
         // const content = viewModel.map(function (typeId) {
@@ -123,9 +118,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-    const { topic } = state
+    const { topic,image } = state
     return {
-        topic
+        topic,image
     }
 }
 export default connect(mapStateToProps)(Topic)

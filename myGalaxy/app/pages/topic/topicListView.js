@@ -32,7 +32,12 @@ export default class TopicListView extends React.Component {
     }
 
     componentWillMount() {
+        this._isMounted = true
         this.getListData()
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
     }
 
     getListData = () => {

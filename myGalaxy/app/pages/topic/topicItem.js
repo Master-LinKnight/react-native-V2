@@ -10,7 +10,6 @@ import {
     ListView,
     RefreshControl
 } from 'react-native';
-import {routerPage} from '../../actions/router'
 
 export default class TopicItem extends React.Component {
     constructor(props) {

@@ -15,7 +15,9 @@ import {
 } from 'react-native';
 import TopicService from '../../services/topicService'
 import TopicItem from './topicItem'
+import LookingImage from '../../common/lookingImage'
 import {fetchArticle} from '../../actions/topic'
+import {ctrlImage} from '../../actions/image'
 import Loading from '../../common/loading'
 // var topicService = new TopicService()
 
@@ -26,6 +28,8 @@ export default class BeautyScrollView extends React.Component {
             _dataSource:new ListView.DataSource({
                 rowHasChanged:(row1,row2) => row1 !== row2
             }),
+            visible: false,
+            imageUrl: ''
         };
         // this.getListData = this.getListData.bind(this)
         // this.getEndReached = this.getEndReached.bind(this)
@@ -57,8 +61,13 @@ export default class BeautyScrollView extends React.Component {
         }
     }
 
-    onClickImage = (item) => {
-
+    onClickImage = (self, item) => {
+        const {dispatch, image} = self.props
+        console.log(item)
+        if (image.visible == false)
+        {
+            dispatch(ctrlImage(true, item.url))
+        }
     }
 
     render() {
@@ -78,19 +87,19 @@ export default class BeautyScrollView extends React.Component {
                 map_1.push(item)
             }
         })
-
+        const self = this
         const content_1 = map_1.map(function (item, i) {
             const imageView = (
-                <TouchableWithoutFeedback onPress={this.onClickImage.bind(item)}>
-                    <Image key={i+'_'+item.id} style={[{height:parseInt(Math.random() * 20 + 24) * 10},styles.image]} source={{uri:item.url}}/>
+                <TouchableWithoutFeedback key={i+'_'+item.id+'_btn'} onPress={() => self.onClickImage(self, item)}>
+                    <Image key={i+'_'+item.id} style={[{height: 300 },styles.image]} source={{uri:item.url}}/>
                 </TouchableWithoutFeedback>
                 )
             return imageView
         })
         const content_2 = map_2.map(function (item, i) {
             const imageView = (
-                <TouchableWithoutFeedback onPress={this.onClickImage.bind(item)}>
-                    <Image key={i+'_'+item.id} style={[{height:parseInt(Math.random() * 20 + 24) * 10},styles.image]} source={{uri:item.url}}/>
+                <TouchableWithoutFeedback key={i+'_'+item.id+'_btn'} onPress={() => self.onClickImage(self, item)}>
+                    <Image key={i+'_'+item.id} style={[{height: 320 },styles.image]} source={{uri:item.url}}/>
                 </TouchableWithoutFeedback>
             )
             return imageView
@@ -102,6 +111,7 @@ export default class BeautyScrollView extends React.Component {
                 onMomentumScrollEnd={this.getEndReached.bind(this, dispatch, topicModel, category)}
             >
                 <Loading visible={topicModel.isRefreshing}/>
+                <LookingImage {...this.props}/>
                 <View style = {{flexDirection : 'row', justifyContent: 'space-around'}}>
                     <View>
                         {content_1}

@@ -41,14 +41,15 @@ export default class Detail extends Component {
             },
             headerTintColor: '#ffffff',
             headerBackTitle: null,
-            // headerLeft: null,
+            headerLeft: <View><TouchableWithoutFeedback
+                style={{marginTop: 64, width:100, height:60}}
+                onPress={()=>{
+                    navigation.goBack()
+                }}>
+                <Image style={{marginTop:14, marginLeft:24, width:18, height:30}} source={require('../../images/goBack.png')}/>
+            </TouchableWithoutFeedback></View>,
             gesturesEnabled: false
         })
-    }
-
-    componentWillMount()
-    {
-
     }
 
     loadComplete = () => {
