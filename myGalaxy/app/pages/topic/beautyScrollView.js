@@ -105,12 +105,18 @@ export default class BeautyScrollView extends React.Component {
             return imageView
         })
 
-        console.log(topicModel.isRefreshing)
+        // console.log(topicModel.isRefreshing)
         return(
             <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={topicModel.isRefreshing}
+                        onRefresh={() => this.getListData()}
+                    />
+                }
                 onMomentumScrollEnd={this.getEndReached.bind(this, dispatch, topicModel, category)}
             >
-                <Loading visible={topicModel.isRefreshing}/>
+                <Loading visible={(topicModel.isFirstLoaded && topicModel.isRefreshing)}/>
                 <LookingImage {...this.props}/>
                 <View style = {{flexDirection : 'row', justifyContent: 'space-around'}}>
                     <View>

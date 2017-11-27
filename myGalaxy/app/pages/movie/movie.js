@@ -13,11 +13,15 @@ import {
     View,
     TouchableWithoutFeedback,
 } from 'react-native';
-
+import MovieService from '../../services/movieService'
+import Loading from '../../common/loading'
+const movieService = new MovieService()
 export default class Movie extends Component {
     constructor(props){
         super(props);
-
+        this.state = {
+            visible: false
+        }
     }
 
     static navigationOptions = ({navigation}) => {
@@ -40,12 +44,41 @@ export default class Movie extends Component {
         })
     }
 
+    componentWillMount() {
+        this._isMounted = true
+        this.getMovieListData()
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
+    }
+
+    getMovieListData = () => {
+        this.setState({
+            visible: true
+        })
+        let params = {}
+        params.type = 'hot'
+        params.offset = 0
+        params.limit = 20
+        movieService.GetMovieList(params).then(
+            (res) => {
+                console.log(res.data.movies)
+                this.setState({
+                    visible: false
+                })
+            }
+        ).catch((error) => {
+            console.log(error)
+        }).done()
+    }
+
     render() {
         // Navigation = this.props.navigation;
 
         return (
             <View style={styles.container}>
-
+                <Loading visible={this.state.visible}/>
             </View>
         );
     }
