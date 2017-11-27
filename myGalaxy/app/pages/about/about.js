@@ -41,6 +41,14 @@ export default class About extends Component {
         })
     }
 
+    componentWillMount() {
+        this._isMounted = true
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
+    }
+
     onItemClick = () => {
         const {navigation} = this.props
         navigation.navigate('Detail', {data: {
@@ -54,6 +62,7 @@ export default class About extends Component {
 
         return (
             <View style={styles.container}>
+                <Image style={styles.image} source={require('../../images/react.png')}/>
                 <Text style={styles.welcome}>
                     欢迎使用myGalaxy!
                 </Text>
@@ -74,15 +83,21 @@ export default class About extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#efefef'
+    },
+    image: {
+        height: 250,
+        width: 250,
+        marginTop: 150,
+
     },
     welcome: {
         fontSize: 40,
         textAlign: 'center',
         color: '#666666',
-        margin: 10,
+        marginTop: 80,
     },
     instructions: {
         fontSize: 24,
