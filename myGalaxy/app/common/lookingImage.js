@@ -50,6 +50,10 @@ export default class LookingImage extends Component {
         }
     }
 
+    onRequestClose = () => {
+
+    }
+
     render() {
         const {image} = this.props
         let w = 0
@@ -74,7 +78,7 @@ export default class LookingImage extends Component {
         }
 
         return(
-            <Modal transparent visible={image.visible}>
+            <Modal transparent visible={image.visible} onRequestClose={this.onRequestClose}>
                 <TouchableWithoutFeedback onPress={this.clickToCloseModal}>
                     <View style={styles.container}>
                         <Image style={{height:this.state.height, width:this.state.width, borderRadius: 10}} source={{uri:image.imageUrl}}/>
