@@ -10,7 +10,7 @@
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.0",
     "react-native-drawer": "^2.5.0",
-    "react-native-scrollable-tab-view": "^0.8.0",
+    "react-native-scrollable-tab-view": "^0.7.4",
     "react-native-splash-screen": "^2.1.0",
     "react-native-star-rating": "^1.0.8",
     "react-native-swiper": "^1.5.13",
@@ -28,5 +28,6 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "optionalDependencies": {}
 }
