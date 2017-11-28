@@ -12,6 +12,7 @@ import {
     ScrollView,
     View,
     RefreshControl,
+    Text,
     TouchableWithoutFeedback,
 } from 'react-native';
 import MovieService from '../../services/movieService'
@@ -93,7 +94,20 @@ export default class Movie extends Component {
                 const map = (
                     <View key={'item-'+i} style={styles.itemContainer}>
                         <View style={styles.itemView}>
-
+                            <View style={{width: 260, height: 360, alignSelf: 'flex-end'}}>
+                                <Text style={{ fontSize: 36, marginTop: 50, color: '#666666'}}
+                                      numberOfLines={1}>
+                                    {item.nm}
+                                </Text>
+                                <Text style={{fontSize: 24, marginTop: 20, color: '#999999'}}
+                                      numberOfLines={1}>
+                                    {'导演：' + item.dir}
+                                </Text>
+                                <Text style={{fontSize: 24, marginTop: 10, color: '#999999'}}
+                                      numberOfLines={2}>
+                                    {'主演：' + item.star}
+                                </Text>
+                            </View>
                         </View>
                         <View style={styles.bannerView}>
                             <Image source={{uri:item.img}} style={styles.bannerImg}/>
@@ -108,7 +122,7 @@ export default class Movie extends Component {
 
     render() {
         // Navigation = this.props.navigation;
-
+        console.log(this.state.bannerArray)
         return (
             <View style={styles.container}>
                 <Loading visible={(this.state.refresh && !this.state.isFreshed)}/>
@@ -179,9 +193,11 @@ const styles = StyleSheet.create({
     },
     itemView: {
         height: 360,
-        flexDirection: 'row',
+        flexDirection: 'row-reverse',
         alignItems: 'center',
-        margin :40,
+        margin: 40,
+        marginLeft: 20,
+        marginRight: 20,
         paddingLeft:20,
         paddingRight: 20,
         borderRadius: 10,
@@ -189,7 +205,8 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 5, height: 5},
         shadowColor: 'black',
         shadowOpacity: 0.4,
-        shadowRadius: 5
+        shadowRadius: 5,
+        elevation: 8
     },
     bannerView: {
         width: 250,
@@ -199,6 +216,7 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
         shadowOpacity: 0.4,
         shadowRadius: 4,
+        elevation: 8,
         position: 'absolute',
         top: 20,
         left: 60

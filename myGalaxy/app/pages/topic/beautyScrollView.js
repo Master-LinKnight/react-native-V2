@@ -91,7 +91,7 @@ export default class BeautyScrollView extends React.Component {
         const content_1 = map_1.map(function (item, i) {
             const imageView = (
                 <TouchableWithoutFeedback key={i+'_'+item.id+'_btn'} onPress={() => self.onClickImage(self, item)}>
-                    <Image key={i+'_'+item.id} style={[{height: 300 },styles.image]} source={{uri:item.url}}/>
+                    <Image key={i+'_'+item.id} style={[{height: i % 2 == 0 ? 300 : 340 },styles.image]} source={{uri:item.url}}/>
                 </TouchableWithoutFeedback>
                 )
             return imageView
@@ -99,7 +99,7 @@ export default class BeautyScrollView extends React.Component {
         const content_2 = map_2.map(function (item, i) {
             const imageView = (
                 <TouchableWithoutFeedback key={i+'_'+item.id+'_btn'} onPress={() => self.onClickImage(self, item)}>
-                    <Image key={i+'_'+item.id} style={[{height: 320 },styles.image]} source={{uri:item.url}}/>
+                    <Image key={i+'_'+item.id} style={[{height: i % 2 == 0 ? 340 : 300 },styles.image]} source={{uri:item.url}}/>
                 </TouchableWithoutFeedback>
             )
             return imageView

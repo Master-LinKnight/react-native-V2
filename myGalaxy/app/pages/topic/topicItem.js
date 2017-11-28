@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 5, height: 5},
         shadowColor: 'black',
         shadowOpacity: 0.4,
-        shadowRadius: 5
+        shadowRadius: 5,
+        elevation: 4
     },
     listItemTitle: {
         fontSize: 24,
