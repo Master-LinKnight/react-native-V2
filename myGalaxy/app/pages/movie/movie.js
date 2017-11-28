@@ -11,16 +11,21 @@ import {
     StyleSheet,
     ScrollView,
     View,
+    RefreshControl,
     TouchableWithoutFeedback,
 } from 'react-native';
 import MovieService from '../../services/movieService'
 import Loading from '../../common/loading'
+import Swiper from 'react-native-swiper'
 const movieService = new MovieService()
 export default class Movie extends Component {
     constructor(props){
         super(props);
         this.state = {
-            visible: false
+            refresh: false,
+            isFreshed: false,
+            bannerArray: [],
+            listArray: []
         }
     }
 
@@ -55,7 +60,7 @@ export default class Movie extends Component {
 
     getMovieListData = () => {
         this.setState({
-            visible: true
+            refresh: true,
         })
         let params = {}
         params.type = 'hot'
@@ -63,9 +68,14 @@ export default class Movie extends Component {
         params.limit = 20
         movieService.GetMovieList(params).then(
             (res) => {
-                console.log(res.data.movies)
+                // console.log(res.data.movies)
+                // console.log('-----0-5',res.data.movies.slice(0,5))
+                // console.log('-----5-20',res.data.movies.slice(5,20))
                 this.setState({
-                    visible: false
+                    refresh: false,
+                    isFreshed: true,
+                    bannerArray: res.data.movies.slice(0, 5),
+                    listArray: res.data.movies.slice(5, 20)
                 })
             }
         ).catch((error) => {
@@ -73,12 +83,60 @@ export default class Movie extends Component {
         }).done()
     }
 
+    swiperItem = () => {
+        const model = this.state.bannerArray
+        // console.log(model)
+        if (model != null && model.length > 0)
+        {
+            let modelMap = []
+            model.map((item, i) => {
+                const map = (
+                    <View key={'item-'+i} style={styles.itemContainer}>
+                        <View style={styles.itemView}>
+
+                        </View>
+                        <View style={styles.bannerView}>
+                            <Image source={{uri:item.img}} style={styles.bannerImg}/>
+                        </View>
+                    </View>
+                )
+                modelMap.push(map)
+            })
+            return modelMap
+        }
+    }
+
     render() {
         // Navigation = this.props.navigation;
 
         return (
             <View style={styles.container}>
-                <Loading visible={this.state.visible}/>
+                <Loading visible={(this.state.refresh && !this.state.isFreshed)}/>
+                <ScrollView
+                    style={styles.container}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refresh}
+                            onRefresh={() => this.getMovieListData()}
+                        />
+                    }
+                >
+                    {
+                        this.state.bannerArray.length > 0 ? <Swiper
+                            height={440}
+                            autoplay={true}
+                            loop={true}
+                            horizontal={true}
+                            autoplayTimeout={4}
+                            dot={<View style={styles.dot} />}
+                            activeDot={<View style={styles.activeDot} />}
+                            paginationStyle={styles.pagination}
+                        >
+                            {this.swiperItem()}
+                        </Swiper> : null
+                    }
+
+                </ScrollView>
             </View>
         );
     }
@@ -87,6 +145,68 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#efefef'
+    },
+    swiper: {
+        height: 220
+    },
+    dot: {
+        backgroundColor:'rgba(0,0,0,.2)',
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        marginLeft: 3,
+        marginRight: 3,
+        marginTop: 3,
+        marginBottom: 40
+    },
+    activeDot: {
+        backgroundColor: '#3b5597',
+        width: 16,
+        height: 16,
+        borderRadius: 8,
+        marginLeft: 3,
+        marginRight: 3,
+        marginTop: 3,
+        marginBottom: 40
+    },
+    pagination: {
+        justifyContent: 'flex-end',
+        marginRight: 60,
+    },
+    itemContainer: {
+        height: 440,
+        backgroundColor: '#efefef'
+    },
+    itemView: {
+        height: 360,
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin :40,
+        paddingLeft:20,
+        paddingRight: 20,
+        borderRadius: 10,
+        backgroundColor: '#ffffff',
+        shadowOffset: {width: 5, height: 5},
+        shadowColor: 'black',
+        shadowOpacity: 0.4,
+        shadowRadius: 5
+    },
+    bannerView: {
+        width: 250,
+        height: 400,
+        borderRadius: 8,
+        shadowOffset: {width: 4, height: 4},
+        shadowColor: 'black',
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        position: 'absolute',
+        top: 20,
+        left: 60
+    },
+    bannerImg: {
+        width: 250,
+        height: 400,
+        borderRadius: 8,
     }
 });
 

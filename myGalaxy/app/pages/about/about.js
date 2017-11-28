@@ -76,6 +76,10 @@ export default class About extends Component {
                         </Text>
                     </View>
                 </TouchableWithoutFeedback>
+                <Text style={styles.sign}>
+                    contributor:
+                    Lin,Knight
+                </Text>
             </View>
         );
     }
@@ -105,6 +109,11 @@ const styles = StyleSheet.create({
         color: '#999999',
         marginTop: 10,
     },
+    sign: {
+        marginTop: 20,
+        fontSize: 30,
+        color: '#666666'
+    }
 });
 
 
