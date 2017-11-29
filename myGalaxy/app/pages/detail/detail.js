@@ -63,11 +63,18 @@ export default class Detail extends Component {
     }
 
     loadStart = () => {
-        setTimeout(()=>{
-            this.setState({
-                isfreshing: false
-            })
-        },10000)
+        this.setState({
+            isfreshing: false
+        })
+        // setTimeout(()=>{
+        //     this.setState({
+        //         isfreshing: false
+        //     })
+        // },10000)
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.state.isfreshing)
     }
 
     render() {

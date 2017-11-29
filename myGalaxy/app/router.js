@@ -16,13 +16,18 @@ import {
 import { StackNavigator,TabNavigator,DrawerNavigator,addNavigationHelpers } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 import Login from './pages/login/login'
-import Index from './pages/index/index'
+// import Index from './pages/index/index'  // close
 import Detail from "./pages/detail/detail";
 import Topic from './pages/topic/topic'
 import Movie from './pages/movie/movie'
 import About from './pages/about/about'
 import TabBarItem from './common/tabBarItem'
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
+var iconBottom = 0
+if (Platform.OS === 'ios')
+{
+    iconBottom = 30
+}
 
 class Router extends Component {
     render() {
@@ -50,7 +55,7 @@ class Router extends Component {
                 navigationOptions: {
                     tabBarLabel: '关于App',
                     tabBarIcon: ({focused}) => (
-                        <TabBarItem focused={focused} style={[styles.tabBarIcon,{marginBottom: 24}]} normalImage={require('./images/about.png')} selectedImage={require('./images/about-active.png')}/>
+                        <TabBarItem focused={focused} style={[styles.tabBarIcon]} normalImage={require('./images/about.png')} selectedImage={require('./images/about-active.png')}/>
                     )
                 }
             }
@@ -81,6 +86,10 @@ class Router extends Component {
                     // backgroundColor: 'rgba(255,255,255,0.1)', // TabBar 背景色
                     backgroundColor: '#ffffff',
                     height: 100
+                },
+                iconStyle: {
+                    height: 45,
+                    width: 45,
                 }
             },
             backBehavior: 'none',
@@ -133,7 +142,7 @@ const styles = StyleSheet.create({
     tabBarIcon: {
         height: 45,
         width: 45,
-        marginBottom: 30
+        marginBottom: iconBottom
     }
 });
 

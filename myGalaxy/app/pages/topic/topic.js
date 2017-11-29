@@ -103,10 +103,10 @@ const styles = StyleSheet.create({
     tab: {
         // alignItems:'center',
         // justifyContent: 'center',
+        height: 80,
         paddingBottom: 0
     },
     tabText: {
-        marginTop: 30,
         fontSize: 30
     },
     textStyle: {
