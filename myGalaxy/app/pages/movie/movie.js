@@ -18,6 +18,7 @@ import {
 import MovieService from '../../services/movieService'
 import Loading from '../../common/loading'
 import Swiper from 'react-native-swiper'
+import StarRating from 'react-native-star-rating'
 const movieService = new MovieService()
 export default class Movie extends Component {
     constructor(props){
@@ -94,19 +95,36 @@ export default class Movie extends Component {
                 const map = (
                     <View key={'item-'+i} style={styles.itemContainer}>
                         <View style={styles.itemView}>
-                            <View style={{width: 260, height: 360, alignSelf: 'flex-end'}}>
-                                <Text style={{ fontSize: 36, marginTop: 50, color: '#666666'}}
+                            <View style={styles.itemInfo}>
+                                <Text style={styles.filmTitle}
                                       numberOfLines={1}>
                                     {item.nm}
                                 </Text>
-                                <Text style={{fontSize: 24, marginTop: 20, color: '#999999'}}
+                                <Text style={styles.filmTxt}
                                       numberOfLines={1}>
                                     {'导演：' + item.dir}
                                 </Text>
-                                <Text style={{fontSize: 24, marginTop: 10, color: '#999999'}}
+                                <Text style={[styles.filmTxt, {marginTop: 10}]}
                                       numberOfLines={2}>
                                     {'主演：' + item.star}
                                 </Text>
+                                <Text style={styles.filmTxt}
+                                      numberOfLines={2}>
+                                    {item.snum + '看过'}
+                                </Text>
+                                <View style={styles.ratingView}>
+                                    <StarRating
+                                        disabled={false}
+                                        rating={item.sc / 2}
+                                        maxStars={5}
+                                        halfStarEnabled={true}
+                                        emptyStar={require('../../images/star-none.png')}
+                                        halfStar={require('../../images/star-half.png')}
+                                        fullStar={require('../../images/star-full.png')}
+                                        starStyle={{width: 35, height: 35}}
+                                        selectedStar={(rating)=>{}}/>
+                                    <Text style={styles.ratingTxt}>{item.sc}</Text>
+                                </View>
                             </View>
                         </View>
                         <View style={styles.bannerView}>
@@ -225,6 +243,31 @@ const styles = StyleSheet.create({
         width: 250,
         height: 400,
         borderRadius: 8,
+    },
+    itemInfo: {
+        width: 260,
+        height: 360,
+        alignSelf: 'flex-end'
+    },
+    filmTitle: {
+        fontSize: 36,
+        marginTop: 50,
+        color: '#666666'
+    },
+    filmTxt: {
+        fontSize: 24,
+        marginTop: 20,
+        color: '#999999'
+    },
+    ratingView: {
+        flexDirection: 'row',
+        marginTop: 10
+    },
+    ratingTxt: {
+        fontSize: 30,
+        color: '#ffcc33',
+        fontWeight: '500',
+        marginLeft: 16,
     }
 });
 

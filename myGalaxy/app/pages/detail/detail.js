@@ -74,7 +74,7 @@ export default class Detail extends Component {
     }
 
     componentWillUnmount() {
-        clearTimeout(this.state.isfreshing)
+        // clearTimeout(this.state.isfreshing)
     }
 
     render() {
