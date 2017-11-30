@@ -126,6 +126,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: '#ffcc33',
         fontWeight: '500',
-        marginLeft: 16,
+        marginLeft: 16
     }
 });

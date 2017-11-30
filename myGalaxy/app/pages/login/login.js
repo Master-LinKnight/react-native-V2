@@ -126,6 +126,13 @@ export default class Login extends Component {
 
     render() {
         Navigation = this.props.navigation;
+        const eyeImg = () => {
+            if (!this.state.isBlock) {
+                return require('../../images/eye-close2.png')
+            } else {
+                return require('../../images/eye-open2.png')
+            }
+        } // change for android
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <StatusBar
@@ -156,7 +163,8 @@ export default class Login extends Component {
                     <View style={{height:80, width:80, alignItems:"flex-end", marginRight:0}}>
                         <TouchableWithoutFeedback onPress={this.pswBlock}>
                             <Image style={{margin:10, width:60, height:60}}
-                                   source={!this.state.isBlock ? require('../../images/eye-close.png') : require('../../images/eye-open.png')}/>
+                                   source={eyeImg()}
+                            />
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
@@ -182,7 +190,7 @@ const styles = StyleSheet.create({
     header: {
         height: 128,
         marginTop: 0,
-        backgroundColor: '#272638'
+        backgroundColor: '#3b5597'
     },
     logo: {
         marginTop: 100,

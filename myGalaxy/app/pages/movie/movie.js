@@ -13,13 +13,19 @@ import {
     View,
     RefreshControl,
     Text,
+    Dimensions,
     TouchableWithoutFeedback,
+    FlatList
 } from 'react-native';
 import MovieService from '../../services/movieService'
 import Loading from '../../common/loading'
 import Swiper from 'react-native-swiper'
 import SliderItem from './sliderItem'
+import FlatListItem from './flatListItem'
 const movieService = new MovieService()
+var {height, width} = Dimensions.get('window')
+var itemHeight = 320
+import StarRating from 'react-native-star-rating'
 export default class Movie extends Component {
     constructor(props){
         super(props);
@@ -101,9 +107,19 @@ export default class Movie extends Component {
         }
     }
 
+    renderItemView = (item) => {
+        return (
+            <FlatListItem item={item} itemHeight={itemHeight}/>
+        )
+    }
+
+    renderItemLayout = (data, index) => {
+        return {length: itemHeight,offset: itemHeight*index,index}
+    }
+
     render() {
         // Navigation = this.props.navigation;
-        console.log(this.state.bannerArray)
+        // console.log(this.state.bannerArray)
         return (
             <View style={styles.container}>
                 <Loading visible={(this.state.refresh && !this.state.isFreshed)}/>
@@ -117,20 +133,36 @@ export default class Movie extends Component {
                     }
                 >
                     {
-                        this.state.bannerArray.length > 0 ? <Swiper
-                            height={440}
-                            autoplay={true}
-                            loop={true}
-                            horizontal={true}
-                            autoplayTimeout={4}
-                            dot={<View style={styles.dot} />}
-                            activeDot={<View style={styles.activeDot} />}
-                            paginationStyle={styles.pagination}
-                        >
-                            {this.swiperItem()}
-                        </Swiper> : null
+                        this.state.bannerArray.length > 0 ?
+                            <View>
+                                <Swiper
+                                    height={440}
+                                    autoplay={true}
+                                    loop={true}
+                                    horizontal={true}
+                                    autoplayTimeout={4}
+                                    dot={<View style={styles.dot} />}
+                                    activeDot={<View style={styles.activeDot} />}
+                                    paginationStyle={styles.pagination}
+                                >
+                                    {this.swiperItem()}
+                                </Swiper>
+                            </View>
+                         : null
                     }
-
+                    <View>
+                        <FlatList
+                            style={{margin: 20}}
+                            data = {this.state.listArray}
+                            keyExtractor={(item, index) => index}
+                            renderItem={
+                                ({item}) => this.renderItemView(item)
+                            }
+                            getItemLayout={(data, index) => this.renderItemLayout(data, index)}
+                            showsVerticalScrollIndicator={false}
+                            numColumns={3}
+                        />
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -167,6 +199,7 @@ const styles = StyleSheet.create({
     pagination: {
         justifyContent: 'flex-end',
         marginRight: 60,
+        marginBottom: 10
     }
 });
 

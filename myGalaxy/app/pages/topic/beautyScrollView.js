@@ -63,7 +63,7 @@ export default class BeautyScrollView extends React.Component {
 
     onClickImage = (self, item) => {
         const {dispatch, image} = self.props
-        console.log(item)
+        // console.log(item)
         if (image.visible == false)
         {
             dispatch(ctrlImage(true, item.url))
