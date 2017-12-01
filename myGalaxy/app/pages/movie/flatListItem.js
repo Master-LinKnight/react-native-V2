@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         shadowColor: 'black',
         shadowOpacity: 0.4,
         shadowRadius: 5,
-        elevation: 8
+        elevation: 4
     },
     itemView: {
         height: 70,
@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
         width: 180
     },
     itemImg: {
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
         height: 250,
         width: 180
     },

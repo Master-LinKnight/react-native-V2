@@ -16,7 +16,8 @@ import {
     TextInput,
     View,
     Text,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    InteractionManager
 } from 'react-native';
 // import Resolution from './common/resolution'
 import _logo from '../../images/react.png'
@@ -71,47 +72,55 @@ export default class Login extends Component {
     }
 
     keyboardWillShow = (event) => {
-        console.log('keyboardWillShow')
-        Animated.timing(this.imageHeight, {
-            duration: event.duration,
-            toValue: LOGO_MIN,
-        }).start();
-        Animated.timing(this.imageWidth, {
-            duration: event.duration,
-            toValue: LOGO_MIN,
-        }).start();
+        // console.log('keyboardWillShow')
+        InteractionManager.runAfterInteractions(() => {
+            Animated.timing(this.imageHeight, {
+                duration: event.duration,
+                toValue: LOGO_MIN,
+            }).start();
+            Animated.timing(this.imageWidth, {
+                duration: event.duration,
+                toValue: LOGO_MIN,
+            }).start();
+        })
     };
 
     keyboardWillHide = (event) => {
-        console.log('keyboardWillHide')
-        Animated.timing(this.imageHeight, {
-            duration: event.duration,
-            toValue: LOGO_MAX,
-        }).start();
-        Animated.timing(this.imageWidth, {
-            duration: event.duration,
-            toValue: LOGO_MAX,
-        }).start();
+        // console.log('keyboardWillHide')
+        InteractionManager.runAfterInteractions(() => {
+            Animated.timing(this.imageHeight, {
+                duration: event.duration,
+                toValue: LOGO_MAX,
+            }).start();
+            Animated.timing(this.imageWidth, {
+                duration: event.duration,
+                toValue: LOGO_MAX,
+            }).start();
+        })
     };
 
     keyboardDidShow = (event) => {
-        console.log('keyboardWillShow')
-        Animated.timing(this.imageHeight, {
-            toValue: LOGO_MIN,
-        }).start();
-        Animated.timing(this.imageWidth, {
-            toValue: LOGO_MIN,
-        }).start();
+        InteractionManager.runAfterInteractions(() => {
+            Animated.timing(this.imageHeight, {
+                toValue: LOGO_MIN,
+            }).start();
+            Animated.timing(this.imageWidth, {
+                toValue: LOGO_MIN,
+            }).start();
+        })
+        // console.log('keyboardWillShow')
     };
 
     keyboardDidHide = (event) => {
-        console.log('keyboardWillHide')
-        Animated.timing(this.imageHeight, {
-            toValue: LOGO_MAX,
-        }).start();
-        Animated.timing(this.imageWidth, {
-            toValue: LOGO_MAX,
-        }).start();
+        InteractionManager.runAfterInteractions(() => {
+            Animated.timing(this.imageHeight, {
+                toValue: LOGO_MAX,
+            }).start();
+            Animated.timing(this.imageWidth, {
+                toValue: LOGO_MAX,
+            }).start();
+        })
+        // console.log('keyboardWillHide')
     };
 
     pswBlock = () => {
