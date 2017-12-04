@@ -36,6 +36,8 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		DE41DBBA1FD4D97C000C394C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE41DBB91FD4D97C000C394C /* Images.xcassets */; };
+		DE41DBE31FD50E58000C394C /* index.ios.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = DE41DBC71FD50E58000C394C /* index.ios.jsbundle */; };
+		DE41DBE41FD50E58000C394C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = DE41DBE21FD50E58000C394C /* assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +266,8 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		DE41DBB91FD4D97C000C394C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myGalaxy/Images.xcassets; sourceTree = "<group>"; };
+		DE41DBC71FD50E58000C394C /* index.ios.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.ios.jsbundle; path = bundle/index.ios.jsbundle; sourceTree = "<group>"; };
+		DE41DBE21FD50E58000C394C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = bundle/assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +403,8 @@
 		13B07FAE1A68108700A75B9A /* myGalaxy */ = {
 			isa = PBXGroup;
 			children = (
+				DE41DBE21FD50E58000C394C /* assets */,
+				DE41DBC71FD50E58000C394C /* index.ios.jsbundle */,
 				DE41DBB91FD4D97C000C394C /* Images.xcassets */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -878,6 +884,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE41DBE31FD50E58000C394C /* index.ios.jsbundle in Resources */,
+				DE41DBE41FD50E58000C394C /* assets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				DE41DBBA1FD4D97C000C394C /* Images.xcassets in Resources */,
 			);
