@@ -96,6 +96,14 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs { 
+        release { 
+            storeFile file('/Users/Knight/Documents/GitRepository/react-native-V2/myGalaxy/android/app/my-release-key.keystore') 
+            storePassword "admin123"
+            keyAlias "my-key-alias"
+            keyPassword "admin123"
+        } 
+    }
     splits {
         abi {
             reset()
@@ -108,6 +116,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
