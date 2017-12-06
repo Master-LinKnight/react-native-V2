@@ -1,6 +1,8 @@
 # React Native 开源项目 MyGalaxy
 ![](https://img.shields.io/badge/build-passing-brightgreen.svg)
 ![](https://img.shields.io/badge/release--date-november-green.svg)
+![](https://img.shields.io/badge/platform-iOS%7CAndroid-orange.svg)
+
 ## MyGalaxy 项目概述
 为公司技术分享开发的项目，同时也为了练手开发一个成品的App。项目融合了`干货API`和`猫眼API`,特在此感谢！
 ### App功能
