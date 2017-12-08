@@ -40,7 +40,8 @@
 * redux-persist
 
 ### 安装配置
-在根目录执行 npm install
+未安装React Native需执行命令npm install -g react-native-cli
+已安装React Native在根目录执行 npm install
 
 ### 编译运行
 在根目录执行 react-native run-ios & react-native run-android
