@@ -26,24 +26,24 @@ export default class SliderItem extends React.Component {
                     <View style={styles.itemInfo}>
                         <Text style={styles.filmTitle}
                               numberOfLines={1}>
-                            {item.nm}
+                            {item.title}
                         </Text>
                         <Text style={styles.filmTxt}
                               numberOfLines={1}>
-                            {'导演：' + item.dir}
+                            {'导演：' + item.directors.name}
                         </Text>
                         <Text style={[styles.filmTxt, {marginTop: 10}]}
                               numberOfLines={2}>
-                            {'主演：' + item.star}
+                            {'主演：' + item.casts[1].name}
                         </Text>
                         <Text style={styles.filmTxt}
                               numberOfLines={2}>
-                            {item.snum + '看过'}
+                            {item.collect_count + '看过'}
                         </Text>
                         <View style={styles.ratingView}>
                             <StarRating
                                 disabled={false}
-                                rating={item.sc / 2}
+                                rating={item.rating.average / 2}
                                 maxStars={5}
                                 halfStarEnabled={true}
                                 emptyStar={require('../../images/star-none.png')}
@@ -51,12 +51,12 @@ export default class SliderItem extends React.Component {
                                 fullStar={require('../../images/star-full.png')}
                                 starStyle={{width: 35, height: 35}}
                                 selectedStar={(rating)=>{}}/>
-                            <Text style={styles.ratingTxt}>{item.sc}</Text>
+                            <Text style={styles.ratingTxt}>{item.rating.average}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.bannerView}>
-                    <Image source={{uri:item.img}} style={styles.bannerImg}/>
+                    <Image source={{uri:item.images.large}} style={styles.bannerImg}/>
                 </View>
             </View>
         );

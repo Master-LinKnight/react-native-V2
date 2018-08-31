@@ -23,14 +23,14 @@ export default class FlatListItem extends React.Component {
         return(
             <View style={[styles.itemContainer, {height: itemHeight}]}>
                 <View style={styles.itemImgView}>
-                    <Image style={styles.itemImg} source={{uri:item.img}}/>
+                    <Image style={styles.itemImg} source={{uri:item.images.large}}/>
                 </View>
                 <View style={styles.itemView}>
-                    <Text style={styles.filmTitle} numberOfLines={1}>{item.nm}</Text>
+                    <Text style={styles.filmTitle} numberOfLines={1}>{item.title}</Text>
                     <View style={styles.ratingView}>
                         <StarRating
                             disabled={false}
-                            rating={item.sc / 2}
+                            rating={item.rating.average / 2}
                             maxStars={5}
                             halfStarEnabled={true}
                             emptyStar={require('../../images/star-none.png')}
@@ -38,7 +38,7 @@ export default class FlatListItem extends React.Component {
                             fullStar={require('../../images/star-full.png')}
                             starStyle={{width: 20, height: 20, marginTop: 2}}
                             selectedStar={(rating)=>{}}/>
-                        <Text style={styles.ratingTxt}>{item.sc}</Text>
+                        <Text style={styles.ratingTxt}>{item.rating.average}</Text>
                     </View>
                 </View>
             </View>
