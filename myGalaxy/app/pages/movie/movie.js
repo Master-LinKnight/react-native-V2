@@ -71,19 +71,19 @@ export default class Movie extends Component {
             refresh: true,
         })
         let params = {}
-        params.type = 'hot'
-        params.offset = 0
-        params.limit = 20
+        params.apikey = '0b2bdeda43b5688921839c8ecb20399b'
+        params.start = 0
+        params.count = 20
         movieService.GetMovieList(params).then(
             (res) => {
-                // console.log(res.data.movies)
-                // console.log('-----0-5',res.data.movies.slice(0,5))
-                // console.log('-----5-20',res.data.movies.slice(5,20))
+                // console.log(res.subjects)
+                // console.log('-----0-5',res.subjects.slice(0,5))
+                // console.log('-----5-20',res.subjects.slice(5,20))
                 this.setState({
                     refresh: false,
                     isFreshed: true,
-                    bannerArray: res.data.movies.slice(0, 5),
-                    listArray: res.data.movies.slice(5, 20)
+                    bannerArray: res.subjects.slice(0, 5),
+                    listArray: res.subjects.slice(5, 20)
                 })
             }
         ).catch((error) => {
